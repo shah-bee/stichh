@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+.grow {
+  flex: 1;
+}
+
+.main {
+  overflow-y: auto;
+}
+
+body {
+  min-height:100vh;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
