@@ -1,4 +1,4 @@
-import { MenuItem, Select as MuiSelect} from '@material-ui/core';
+import { MenuItem, Select as MuiSelect } from '@material-ui/core';
 import React from 'react'
 
 export default function Select(props) {
