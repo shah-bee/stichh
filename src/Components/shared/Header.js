@@ -6,8 +6,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import AppBar from '@material-ui/core/AppBar'
 import React from 'react'
 import { makeStyles } from '@material-ui/styles';
+import { signOut } from '../../firebase';
 
-const useStyles = makeStyles( theme => ({
+const useStyles = makeStyles(theme => ({
     root: {
         backgroundColor: '#fff',
         transform: 'translateZ(0)'
@@ -16,7 +17,7 @@ const useStyles = makeStyles( theme => ({
         padding: `0px ${theme.spacing(2)}px`,
         opacity: '0.6',
         fontSize: '0.8rem',
-        '& :hover':{
+        '& :hover': {
             backgroundColor: '#f2f2f2'
         },
         '& .MuiSvgIcon-root': {
@@ -57,8 +58,8 @@ export default function Header() {
                         </IconButton>
                     </Grid>
                     <Grid item>
-                        <IconButton>
-                            <PowerSettingsNewIcon></PowerSettingsNewIcon>
+                        <IconButton onClick={signOut}>
+                            <PowerSettingsNewIcon ></PowerSettingsNewIcon>
                         </IconButton>
                     </Grid>
                 </Grid>

@@ -1,15 +1,71 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../Components/shared/Header'
-import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
-import Footer from '../Components/shared/Footer'
-import Home from '../Components/Home'
 import SideMenu from '../Components/shared/SideMenu'
 import { makeStyles, ThemeProvider } from '@material-ui/styles'
 import { createMuiTheme, CssBaseline } from '@material-ui/core'
-import PageHeader from '../Components/shared/PageHeader'
 import Customer from '../Components/Customer/Customer';
 import Customers from '../Components/Customer/Customers';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
+import { Auth } from '../firebase'
+import Authenticate from '../Components/Authenticate'
+import { UserContext } from '../UserContext';
+import CustomerDetails from '../Components/Customer/CustomerDetails'
+import EditCustomer from '../Components/Customer/EditCustomer'
+
+export function App() {
+
+  const classes = useStyles();
+  const [user, setUser] = useState({ isLoggedIn: false, email: '', photoUrl: '' });
+
+  function onAuthChange(callback) {
+    Auth.onAuthStateChanged(user => {
+      if (user) {
+        callback({ isLoggedIn: true, email: user.email, photoUrl: user.photoURL });
+      } else {
+        callback({ user });
+      }
+    });
+  }
+
+  useEffect(() => {
+    const unsubscribe = onAuthChange(setUser);
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  return (
+    <ThemeProvider theme={theme}>
+      <SideMenu></SideMenu>
+      <div className={classes.appMain}>
+        <UserContext.Provider value={user}>
+          <Header></Header>
+          <Switch>
+            <Route path='/customer/edit/:customerId'>
+              <EditCustomer />
+            </Route>
+            <Route path='/customer'>
+              <Customer />
+            </Route>
+            <Route path='/customers'>
+              <Customers />
+            </Route>
+            <Route path='/CustomerDetails/:customerId'>
+              <CustomerDetails />
+            </Route>
+            <Route exact path='/'>
+              <Authenticate />
+            </Route>
+          </Switch>
+        </UserContext.Provider>
+      </div>
+      <CssBaseline></CssBaseline>
+    </ThemeProvider>
+
+  );
+}
+
+export default App;
 
 
 const useStyles = makeStyles({
@@ -18,6 +74,7 @@ const useStyles = makeStyles({
     width: '100%'
   }
 });
+
 
 const theme = createMuiTheme({
   palette: {
@@ -30,21 +87,3 @@ const theme = createMuiTheme({
     }
   }
 });
-
-function App() {
-  const classes = useStyles();
-  return (
-    <ThemeProvider theme={theme}>
-      <SideMenu></SideMenu>
-      <div className={classes.appMain}>
-        <Header></Header>
-        <Route path='/customer' component={Customer}></Route>
-        <Route path='/customers' component={Customers}></Route>
-      </div>
-      <CssBaseline></CssBaseline>
-    </ThemeProvider>
-
-  )
-}
-
-export default App;

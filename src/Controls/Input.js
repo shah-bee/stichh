@@ -7,11 +7,11 @@ export default function Input(props) {
 
     return (
         <TextField
-            variant="outlined"
             name={name}
             label={label}
             value={value}
             onChange={onChange}
+            {...props}
         >
         </TextField>
     )

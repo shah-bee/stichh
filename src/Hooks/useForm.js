@@ -22,7 +22,7 @@ export function Form(props) {
     const classes = useStyles();
 
     return (
-        <form onSubmit={props.action} className={classes.root}>
+        <form onSubmit={props.action} autoComplete="off" className={classes.root}>
             {props.children}
         </form>
     )

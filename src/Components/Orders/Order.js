@@ -1,11 +1,9 @@
 import React from 'react'
 
-function kurta() {
+export default function Order() {
     return (
         <div>
             
         </div>
     )
 }
-
-export default kurta

@@ -1,11 +1,9 @@
 import React from 'react'
 
-function kurta() {
+export default function Date() {
     return (
         <div>
             
         </div>
     )
 }
-
-export default kurta
