@@ -11,14 +11,12 @@ axios.interceptors.request.use(req => {
 })
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Switch>
-        <App />
-      </Switch>
-    </BrowserRouter>
-
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Switch>
+      <App />
+    </Switch>
+  </BrowserRouter>
+  ,
   document.getElementById('root')
 );
 

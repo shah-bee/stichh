@@ -1,11 +1,11 @@
-import Kurta from '../Components/Measurement/kurta'
-import pyjama from '../Components/Measurement/pyjama'
-import shirt from '../Components/Measurement/shirt'
-import trouser from '../Components/Measurement/trouser'
+import Kurta from '../Components/Measurement/Kurta'
+import Pyjama from '../Components/Measurement/Pyjama'
+import Shirt from '../Components/Measurement/Shirt'
+import Trouser from '../Components/Measurement/Trouser'
 
-export const MeasurementType = {
+export const StichType = {
     Kurta,
-    pyjama,
-    shirt,
-    trouser
+    Pyjama,
+    Shirt,
+    Trouser
 }

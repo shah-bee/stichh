@@ -8,6 +8,7 @@ import { fStore } from '../../firebase'
 import PageHeader from '../shared/PageHeader'
 import CustomerModel from '../../Models/Customer'
 import { Link } from 'react-router-dom'
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -20,6 +21,10 @@ const useStyles = makeStyles(theme => ({
 
     editIcon: {
         float: "right"
+    },
+
+    orders:{
+        fontSize: '10px'
     }
 
 }));
@@ -36,7 +41,6 @@ function CustomerDetails(props) {
             const docRef = await fStore.collection("Customers").get();
             const customer = docRef.docs.filter(doc => doc.id === customerId)[0].data();
             setCustomer({ ...customer });
-            console.log({ customer });
             if (customer) {
                 setLoading(false);
             }
@@ -54,12 +58,16 @@ function CustomerDetails(props) {
                 title="Customer details"
                 description="Customer details!"
             >
+
             </PageHeader>
             {!loading &&
                 <>
                     <Card className={classes.root}>
                         <IconButton className={classes.editIcon}>
                             <Link to={`/customer/edit/${customerId}`}><EditIcon /></Link>
+                        </IconButton>
+                        <IconButton className={classes.editIcon}>
+                            <Link to={`/orders/${customerId}`}><AddShoppingCartIcon></AddShoppingCartIcon></Link>
                         </IconButton>
                         <Grid container spacing={2} alignContent="center">
                             <Grid item xs={6}>
@@ -85,7 +93,7 @@ function CustomerDetails(props) {
                             </Grid>
                             <Grid item xs={6}>
                                 <Typography>
-                                {customer.Address.houseNumber},{customer.Address.street}, 
+                                    {customer.Address.houseNumber},{customer.Address.street},
                                 {customer.Address.city}
                                 </Typography>
                             </Grid>

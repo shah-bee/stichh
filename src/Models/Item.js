@@ -1,5 +1,5 @@
 export const Item = {
-    ItemId: '',
+    Type: '',
     Name: '',
     Description: ''
 }

@@ -11,6 +11,8 @@ import Authenticate from '../Components/Authenticate'
 import { UserContext } from '../UserContext';
 import CustomerDetails from '../Components/Customer/CustomerDetails'
 import EditCustomer from '../Components/Customer/EditCustomer'
+import Orders from '../Components/Orders/Orders'
+import NewOrder from '../Components/Orders/NewOrder'
 
 export function App() {
 
@@ -36,11 +38,17 @@ export function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <SideMenu></SideMenu>
+      {/* <SideMenu></SideMenu> */}
       <div className={classes.appMain}>
         <UserContext.Provider value={user}>
           <Header></Header>
           <Switch>
+            <Route path='/orders/add/:customerId'>
+                <NewOrder></NewOrder>
+            </Route>
+            <Route path='/orders/:customerId'>
+                <Orders></Orders>
+            </Route>
             <Route path='/customer/edit/:customerId'>
               <EditCustomer />
             </Route>

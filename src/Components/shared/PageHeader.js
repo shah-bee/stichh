@@ -41,6 +41,7 @@ export default function PageHeader(props) {
                         {description}
                     </Typography>
                 </div>
+                {props.children}
             </div>
         </Paper>
     )
